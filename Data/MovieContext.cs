@@ -1,20 +1,24 @@
+using MovieAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using MoviesAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace MoviesAPI.Data
+namespace MovieAPI.Data
 {
     public class MovieContext : DbContext
     {
-        public MovieContext(DbContextOptions<MovieContext> opt) : base (opt)
+        public MovieContext(DbContextOptions<MovieContext> opt) : base(opt)
         {
 
         }
 
         public DbSet<Movie> Movies { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+
+            modelBuilder.Entity<Movie>();
+
+        }
     }
 }
